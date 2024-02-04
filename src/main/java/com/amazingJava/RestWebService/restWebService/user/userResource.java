@@ -1,12 +1,17 @@
 package com.amazingJava.RestWebService.restWebService.user;
 
 import jakarta.validation.Valid;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class userResource {
@@ -23,15 +28,21 @@ public class userResource {
         return service.findAll();
     }
 
+    //implement hateoas
+    //EntityModel
+    //WebMvcLinkBuilder
     //http://localhost:8080/users/2
     @GetMapping("/users/{id}")
-    public User retriveUser(@PathVariable int id){
+    public EntityModel<User> retriveUser(@PathVariable int id){
         User user= service.findOne(id);
         //System.out.println("Where are you my fucking error "+user);
         if(user == null){
             throw new UserNotFoundException("id :"+id);
         }
-        return  user;
+        EntityModel<User> entityModel = EntityModel.of(user);
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retriveAllUsers());
+        entityModel.add(link.withRel("all-users"));
+        return  entityModel;
     }
 
 
