@@ -1,10 +1,12 @@
 package com.amazingJava.RestWebService.restWebService.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties("field1")    //class level filtering
+@JsonFilter("SomeBeanFilter")
+//@JsonIgnoreProperties("field1")    //class level filtering
 public class SomeBean {
     private String field1;
     //@JsonIgnore
