@@ -18,6 +18,7 @@ public class User {
     @Past(message = "Birth date should be in the past")
     private LocalDate birthDate;
 
+    public User(){}
     public User(int id, String name, LocalDate birthDate) {
         this.id = id;
         this.name = name;
