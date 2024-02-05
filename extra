@@ -35,9 +35,10 @@ docker run --detach
 mysql:8-oracle
 
 
-//#########  mysqlsh commands
-mysqlsh
-\connect social-media-user@localhost:3306
+//#########  mysqlsh commands client
+open  mysqlsh
+
+\connect social-media-user@localhost:3306 ,give password
 \sql
 use social-media-database
 select * from user_details;
