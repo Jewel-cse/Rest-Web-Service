@@ -28,6 +28,14 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Post> posts;

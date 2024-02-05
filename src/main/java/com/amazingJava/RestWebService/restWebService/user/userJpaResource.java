@@ -36,7 +36,7 @@ public class userJpaResource {
     //implement hateoas
     //EntityModel
     //WebMvcLinkBuilder
-    //http://localhost:8080/users/2
+    //http://localhost:8080/jpa/users/2
     @GetMapping("/jpa/users/{id}")
     public EntityModel<User> retriveUser(@PathVariable int id){
         Optional<User> user= repository.findById(id);
@@ -53,7 +53,7 @@ public class userJpaResource {
 
     // ################## POST ##############
 
-    //http://localhost:8080/users
+    //http://localhost:8080/jpa/users
     @PostMapping("/jpa/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
         User savedUser = (User) repository.save(user);
@@ -66,10 +66,23 @@ public class userJpaResource {
 
     //############# Delete ################
 
-    //http:localhost:8080/users/{id}
+    //http:localhost:8080/jpa/users/{id}
     @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id){
         repository.deleteById(id);
     }
+
+    //########## retrive all posts for a user #######
+    //http://localhost:8080/jpa/users/{id}/posts
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retriveAllPostForAUser(@PathVariable int id){
+        Optional<User> user= repository.findById(id);
+        //System.out.println("Where are you my fucking error "+user);
+        if(user.isEmpty()){
+            throw new UserNotFoundException("id :"+id);
+        }
+        return  user.get().getPosts();
+    }
+
 
 }
