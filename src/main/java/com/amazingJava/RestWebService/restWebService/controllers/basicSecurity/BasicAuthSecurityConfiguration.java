@@ -24,6 +24,7 @@ public class BasicAuthSecurityConfiguration {
         );
         http.httpBasic();    //depricatd
         http.csrf().disable();
+        http.headers().frameOptions().sameOrigin();    //h2 console e frame disable thakle enable kore
         return  http.build();
     }
     //no session, login form nai : cz form remove korechi, logout page nai
