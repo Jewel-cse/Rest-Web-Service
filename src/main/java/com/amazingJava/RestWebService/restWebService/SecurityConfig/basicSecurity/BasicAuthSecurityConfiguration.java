@@ -1,4 +1,4 @@
-package com.amazingJava.RestWebService.restWebService.controllers.basicSecurity;
+package com.amazingJava.RestWebService.restWebService.SecurityConfig.basicSecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 
-@Configuration
+//@Configuration
 public class BasicAuthSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
