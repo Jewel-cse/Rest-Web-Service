@@ -31,7 +31,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 
-@Configuration
+//@Configuration
 public class JwtSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

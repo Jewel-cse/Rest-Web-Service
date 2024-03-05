@@ -17,13 +17,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 
-//@Configuration
+@Configuration
 public class BasicAuthSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(
-                auth -> {
-                    auth.anyRequest().authenticated();
+                auth -> {auth
+                        .requestMatchers("/users").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated();
                 });
         http.sessionManagement(
                 session ->{session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);}
