@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@EnableMethodSecurity(jsr250Enabled = true)
+@EnableMethodSecurity(jsr250Enabled = true,securedEnabled = true)
 public class BasicAuthSecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
