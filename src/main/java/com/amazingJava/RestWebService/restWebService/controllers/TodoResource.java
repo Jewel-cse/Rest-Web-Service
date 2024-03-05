@@ -1,5 +1,6 @@
 package com.amazingJava.RestWebService.restWebService.controllers;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -22,6 +23,7 @@ public class TodoResource {
     @GetMapping("/users/{username}/todos")
     @PreAuthorize("hasRole('USER')and #username == authentication.name")     //at first auth.username er sathe pathvariable username check korbe
     @PostAuthorize("returnObject.username == 'jewel1'")         //return object er username er sathe check korbe
+    @RolesAllowed({"ADMIN","USER"})
     public  Todo retrieveTodosforspecificUser(@PathVariable String username){
         return TODO_LIST.get(0);
     }
